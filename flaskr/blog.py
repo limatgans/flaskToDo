@@ -11,12 +11,12 @@ bp = Blueprint('blog', __name__)
 @bp.route('/')
 def index():
     db = get_db()
-    posts = db.execute(
+    todos = db.execute(
         'SELECT p.id, title, body, created'
         ' FROM post p'
         ' ORDER BY created DESC'
     ).fetchall()
-    return render_template('blog/index.html', posts=posts)
+    return render_template('blog/index.html', todos=todos)
 
 @bp.route('/create', methods=('GET', 'POST'))
 def create():
